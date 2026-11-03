@@ -1,3 +1,4 @@
+import 'package:kazumi/pages/my/watch_stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:kazumi/bean/settings/settings_list.dart';
 import 'package:kazumi/bean/widget/content_section.dart';
@@ -244,7 +245,12 @@ class _WatchStatsPanel extends StatelessWidget {
     return Material(
       color: compact ? colors.primaryContainer : colors.surfaceContainerHigh,
       borderRadius: BorderRadius.circular(compact ? 28 : 48),
-      child: Padding(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(compact ? 28 : 48),
+        onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
+          builder: (_) => const WatchStatsPage(),
+        )),
+        child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -315,6 +321,7 @@ class _WatchStatsPanel extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }
@@ -799,3 +806,4 @@ class _AdaptivePair extends StatelessWidget {
     );
   }
 }
+
