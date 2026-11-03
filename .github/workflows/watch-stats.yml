@@ -11,6 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: git config --system core.longpaths true
+      - name: Install YAML parser
+        run: choco install yq --yes --no-progress
       - uses: subosito/flutter-action@v2.16.0
         with:
           channel: stable
@@ -28,3 +30,4 @@ jobs:
           name: Kazumi-Windows-Watch-Stats
           path: build/windows/x64/runner/Release/
           if-no-files-found: error
+
