@@ -1,3 +1,5 @@
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:kazumi/repositories/history_repository.dart';
 import 'package:kazumi/pages/my/watch_stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:kazumi/bean/settings/settings_list.dart';
@@ -247,9 +249,12 @@ class _WatchStatsPanel extends StatelessWidget {
       borderRadius: BorderRadius.circular(compact ? 28 : 48),
       child: InkWell(
         borderRadius: BorderRadius.circular(compact ? 28 : 48),
-        onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-          builder: (_) => const WatchStatsPage(),
-        )),
+        onTap: () {
+          final repository = context.read<IHistoryRepository>();
+          Navigator.of(context).push(MaterialPageRoute<void>(
+            builder: (_) => WatchStatsPage(repository: repository),
+          ));
+        },
         child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
         child: Column(
@@ -806,4 +811,5 @@ class _AdaptivePair extends StatelessWidget {
     );
   }
 }
+
 

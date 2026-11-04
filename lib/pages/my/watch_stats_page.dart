@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:kazumi/modules/history/history_module.dart';
 import 'package:kazumi/repositories/history_repository.dart';
 
 class WatchStatsPage extends StatefulWidget {
-  const WatchStatsPage({super.key});
+  const WatchStatsPage({super.key, required this.repository});
+
+  final IHistoryRepository repository;
 
   @override
   State<WatchStatsPage> createState() => _WatchStatsPageState();
 }
 
 class _WatchStatsPageState extends State<WatchStatsPage> {
-  final repository = Modular.get<IHistoryRepository>();
+  IHistoryRepository get repository => widget.repository;
   String query = '';
   bool byEpisodes = false;
 
@@ -123,3 +125,4 @@ class _WatchEntry {
   late final History latest;
   final episodes = <int, Progress>{};
 }
+
